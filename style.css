@@ -1,0 +1,147 @@
+/* General styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000000;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Blinking effect for the form with color and width change */
+@keyframes blink {
+    0% { border-color: #ccc; border-width: 2px; }
+    25% { border-color: #f54343; border-width: 4px; }
+    
+}
+
+/* Main layout for image and form */
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    max-width: 1200px;
+    background-color: #4d0505;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(3, 23, 251, 0.1);
+    border-radius: 10px;
+}
+
+/* Image container */
+.image-container {
+    margin-right: 15px;
+    width: 400px; /* Increase the width of the image container */
+    height: 400px; /* Maintain a fixed height */
+    overflow: hidden; /* Ensure the image stays within the container */
+}
+
+.image-container img {
+    width: 100%; /* Set image to fill the container width */
+    height: 100%; /* Maintain the height */
+    object-fit: cover; /* Ensure the image fits well within the container */
+    border-radius: 10px;
+    transform: rotate(-45deg); /* Rotate the image by 45 degrees */
+    transition: transform 0.5s ease; /* Smooth transition for the rotation */
+}
+
+/* Form container */
+.container {
+    width: 45%;
+    background-color: #fff;
+    padding: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    border: 2px solid #ccc;
+    animation: blink 2s infinite ease-in-out;
+}
+
+h1 {
+    text-align: center;
+    font-size: 1.4em;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-decoration: underline;
+    color: rgb(243, 120, 19); 
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin: 2px 0;
+}
+
+input, textarea, select {
+    padding: 6px;
+    margin-bottom: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+    animation: blink 0.5s;
+}
+
+/* Button Styling */
+button {
+    padding: 6px;
+    background-color: #e38409;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2a8a07;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .image-container {
+        margin-bottom: 15px;
+        width: 250px; /* Reduce size for smaller screens */
+        height: 250px;
+    }
+
+    .container {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: 90%;
+        padding: 5px;
+    }
+
+    input, textarea, select, button {
+        font-size: 16px;
+        padding: 6px;
+    }
+
+    button {
+        padding: 8px;
+    }
+
+    label {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 40%;
+    }
+}

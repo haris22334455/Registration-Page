@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="main-container">
+    <div class="image-container">
+        <img src="hire.png" alt="Description" />
+    </div>
+
+    <div class="container">
+        <h1>JOIN US  </h1>
+
+        <form action="/submit_registration" method="post">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="education">Education:</label>
+            <select id="education" name="education" onchange="showDegreeOptions()" required>
+                <option value="">Select Education Level</option>
+                <option value="FSC">FSC</option>
+                <option value="bachelor">Bachelor's Degree</option>
+                <option value="master">Master's Degree</option>
+                <option value="phd">PhD</option>
+            </select>
+
+            <!-- Conditional Bachelor's Degree radio buttons -->
+            <div id="bachelor-options" style="display: none;">
+                <label>Bachelor Type:</label>
+                <input type="radio" id="undergraduate" name="bachelor_type" value="undergraduate" onchange="showSemesterOptions()">
+                <label for="undergraduate">Undergraduate</label>
+
+                <input type="radio" id="graduate" name="bachelor_type" value="graduate" onchange="showSemesterOptions()">
+                <label for="graduate">Graduate</label>
+
+                <div id="undergraduate-semester" style="display: none;">
+                    <label for="undergraduate_semester">Select Semester:</label>
+                    <select id="undergraduate_semester" name="undergraduate_semester">
+                        <option value="">Select Semester</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Conditional Master's Degree radio buttons -->
+            <div id="master-options" style="display: none;">
+                <label>Master's Status:</label>
+                <input type="radio" id="complete" name="master_status" value="complete" onchange="showMasterSemesterOptions()">
+                <label for="complete">Complete</label>
+
+                <input type="radio" id="incomplete" name="master_status" value="incomplete" onchange="showMasterSemesterOptions()">
+                <label for="incomplete">Incomplete</label>
+
+                <div id="master-semester" style="display: none;">
+                    <label for="master_semester">Select Semester:</label>
+                    <select id="master_semester" name="master_semester">
+                        <option value="">Select Semester</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+            </div>
+
+            <label for="interest">Field of Interest:</label>
+            <select id="interest" name="interest" required>
+                <option value="">Select Field of Interest</option> <!-- Default option added -->
+                <option value="web_design">Web Design</option>
+                <option value="web_development">Web Developer</option>
+                <option value="app_development">App Developer</option>
+                <option value="graphic_design">Graphic Designing</option>
+            </select>
+            
+            <label for="cv_upload">Upload CV (PDF):</label>
+            <input type="file" id="cv_upload" name="cv_upload" accept=".pdf" required>
+            <label for="why_hire">Why should we hire you?</label>
+            <textarea id="why_hire" name="why_hire" rows="4" required></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function showDegreeOptions() {
+        var educationSelect = document.getElementById('education');
+        var bachelorOptions = document.getElementById('bachelor-options');
+        var masterOptions = document.getElementById('master-options');
+
+        // Show bachelor radio buttons only if "Bachelor's Degree" is selected
+        if (educationSelect.value === 'bachelor') {
+            bachelorOptions.style.display = 'block';
+            masterOptions.style.display = 'none'; // Hide master's options
+        } 
+        // Show master radio buttons if "Master's Degree" is selected
+        else if (educationSelect.value === 'master') {
+            masterOptions.style.display = 'block';
+            bachelorOptions.style.display = 'none'; // Hide bachelor's options
+        } else {
+            bachelorOptions.style.display = 'none'; // Hide bachelor's options
+            masterOptions.style.display = 'none'; // Hide master's options
+        }
+    }
+
+    function showSemesterOptions() {
+        var undergraduateSemester = document.getElementById('undergraduate-semester');
+
+        // Show semester options only if "Undergraduate" is selected
+        if (document.getElementById('undergraduate').checked) {
+            undergraduateSemester.style.display = 'block';
+        } else {
+            undergraduateSemester.style.display = 'none'; // Hide semester options
+        }
+    }
+
+    function showMasterSemesterOptions() {
+        var masterSemester = document.getElementById('master-semester');
+
+        // Show semester options only if "Incomplete" is selected
+        if (document.getElementById('incomplete').checked) {
+            masterSemester.style.display = 'block';
+        } else {
+            masterSemester.style.display = 'none'; // Hide semester options
+        }
+    }
+</script>
+
+</body>
+</html>
